@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { supabase, StoreSettings, isSupabaseConfigured } from '../lib/supabase';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
 
 interface StoreSettings {
   id: string;
@@ -189,9 +189,6 @@ interface StoreSettings {
   footer_text: string;
   
   // SEO
-  meta_title: string;
-  meta_description: string;
-  meta_keywords: string;
   meta_author: string;
   meta_robots: string;
   canonical_url: string;
@@ -207,9 +204,7 @@ interface StoreSettings {
   schema_description: string;
   
   // Integrações
-  google_analytics_id: string;
   google_tag_manager_id: string;
-  facebook_pixel_id: string;
   google_ads_conversion_id: string;
   google_ads_conversion_label: string;
   hotjar_id: string;
@@ -375,7 +370,6 @@ const defaultSettings: StoreSettings = {
 
   font_family: 'Roboto',
   heading_font: 'Montserrat',
-  heading_font: 'Montserrat',
   currency: 'BRL',
   currency_symbol: 'R$',
   language: 'pt-BR',
@@ -416,9 +410,6 @@ const defaultSettings: StoreSettings = {
   footer_text: '© 2024 TechStore. Todos os direitos reservados.',
   
   // SEO
-  meta_title: '',
-  meta_description: '',
-  meta_keywords: '',
   meta_author: '',
   meta_robots: 'index,follow',
   canonical_url: '',
@@ -434,9 +425,7 @@ const defaultSettings: StoreSettings = {
   schema_description: '',
   
   // Integrações
-  google_analytics_id: '',
   google_tag_manager_id: '',
-  facebook_pixel_id: '',
   google_ads_conversion_id: '',
   google_ads_conversion_label: '',
   hotjar_id: '',
