@@ -20,73 +20,74 @@ export const AdminSettings: React.FC = () => {
     const { name, value, type } = e.target;
     const finalValue = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
     
-    setFormData(prev => ({
-      ...prev,
-      [name]: finalValue
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-
-    if (!isSupabaseConfigured()) {
-      alert('Supabase não está configurado. Verifique as variáveis de ambiente.');
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const { error } = await supabase!
-        .from('store_settings')
-        .update({
-          ...formData,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', settings?.id);
-
-      if (error) throw error;
-
-      await refreshSettings();
-      alert('Configurações salvas com sucesso!');
-    } catch (error) {
-      console.error('Erro ao salvar configurações:', error);
-      alert('Erro ao salvar configurações');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const tabs = [
-    { id: 'basic', label: 'Básico', icon: Globe },
-    { id: 'design', label: 'Design', icon: Palette },
-    { id: 'typography', label: 'Tipografia', icon: Type },
-    { id: 'layout', label: 'Layout', icon: Layout },
-    { id: 'contact', label: 'Contato', icon: Phone },
-    { id: 'social', label: 'Redes Sociais', icon: Facebook },
-    { id: 'seo', label: 'SEO & Analytics', icon: Globe },
-    { id: 'advanced', label: 'Avançado', icon: Monitor }
-  ];
-
-  const renderBasicTab = () => (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Nome da Loja</label>
-          <input
-            type="text"
-            name="store_name"
-            value={formData.store_name || ''}
-            onChange={handleInputChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
+    const renderBasicTab = () => (
+      <div className="space-y-6">
+        <h3 className="text-lg font-semibold text-gray-900">Informações Básicas</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Banner URL no topo */}
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2">URL da Imagem do Banner (Topo do site)</label>
+            <input
+              type="url"
+              name="banner_url"
+              value={formData.banner_url || ''}
+              onChange={handleInputChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Nome da Loja</label>
+            <input
+              type="text"
+              name="store_name"
+              value={formData.store_name || ''}
+              onChange={handleInputChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Slogan</label>
+            <input
+              type="text"
+              name="store_slogan"
+              value={formData.store_slogan || ''}
+              onChange={handleInputChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2">Descrição</label>
+            <textarea
+              name="store_description"
+              value={formData.store_description || ''}
+              onChange={handleInputChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              rows={3}
+            />
+          </div>
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2">Mensagem de Boas-vindas</label>
+            <input
+              type="text"
+              name="welcome_message"
+              value={formData.welcome_message || ''}
+              onChange={handleInputChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">URL do Logo</label>
+            <input
+              type="url"
+              name="logo_url"
+              value={formData.logo_url || ''}
+              onChange={handleInputChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
         </div>
-        
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Slogan</label>
-          <input
-            type="text"
-            name="store_slogan"
+      </div>
+    );
             value={formData.store_slogan || ''}
             onChange={handleInputChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"

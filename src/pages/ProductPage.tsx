@@ -1,3 +1,14 @@
+  // Galeria: lógica para seleção de imagem principal e secundárias
+  const images = product && product.image_urls && product.image_urls.length > 0
+    ? product.image_urls.filter(Boolean)
+    : product && product.image_url ? [product.image_url] : [];
+  const [selectedImage, setSelectedImage] = React.useState(images[0]);
+  const secondaryImages = images.filter((img) => img !== selectedImage).slice(0, 2);
+
+  React.useEffect(() => {
+    if (images[0]) setSelectedImage(images[0]);
+    // eslint-disable-next-line
+  }, [product && product.id]);
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Star, ShoppingCart, Plus, Minus } from 'lucide-react';
@@ -110,35 +121,29 @@ export const ProductPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6">
-            {/* Galeria de Imagens do Produto */}
-            <div className="flex flex-row lg:flex-row gap-4 w-full">
-              {/* Coluna das duas imagens pequenas */}
-              <div className="flex flex-col gap-4 justify-center">
-                {((product.image_urls && product.image_urls[1]) || product.image_url) && (
-                  <img
-                    src={product.image_urls ? product.image_urls[1] : product.image_url}
-                    alt={product.name + ' miniatura 1'}
-                    className="w-20 h-20 object-cover rounded-lg border border-gray-200"
-                    style={{ maxWidth: 80, maxHeight: 80 }}
-                  />
-                )}
-                {((product.image_urls && product.image_urls[2]) || product.image_url) && (
-                  <img
-                    src={product.image_urls ? product.image_urls[2] : product.image_url}
-                    alt={product.name + ' miniatura 2'}
-                    className="w-20 h-20 object-cover rounded-lg border border-gray-200"
-                    style={{ maxWidth: 80, maxHeight: 80 }}
-                  />
-                )}
-              </div>
-              {/* Imagem principal grande */}
+            {/* Galeria de Imagens do Produto - layout igual ao anexo */}
+            <div className="flex flex-row gap-4 w-full">
+              {/* Imagem principal grande à esquerda */}
               <div className="flex-1 flex items-center justify-center">
                 <img
-                  src={product.image_urls ? product.image_urls[0] : product.image_url}
+                  src={selectedImage}
                   alt={product.name}
-                  className="object-contain rounded-lg border border-gray-200"
-                  style={{ width: '100%', maxWidth: 400, maxHeight: 400, background: '#f9f9f9' }}
+                  className="object-contain rounded-lg border-2 border-purple-400 bg-gray-200"
+                  style={{ width: 220, height: 220, maxWidth: 220, maxHeight: 220, background: '#f9f9f9' }}
                 />
+              </div>
+              {/* Coluna das duas imagens pequenas à direita */}
+              <div className="flex flex-col gap-2 justify-center">
+                {secondaryImages.map((img, idx) => (
+                  <img
+                    key={idx}
+                    src={img}
+                    alt={product.name + ' miniatura ' + (idx + 1)}
+                    className="w-20 h-20 object-cover rounded-lg border border-gray-200 cursor-pointer hover:border-purple-400"
+                    style={{ maxWidth: 80, maxHeight: 80 }}
+                    onClick={() => setSelectedImage(img)}
+                  />
+                ))}
               </div>
             </div>
 

@@ -13,35 +13,8 @@ export const Header: React.FC = () => {
     <>
       {/* Banner configurável pelo admin */}
       {settings?.banner_url && (
-        <div className="w-full flex justify-center items-center bg-transparent" style={{ minHeight: 100 }}>
-          <img
-            src={settings.banner_url}
-            alt="Banner"
-            style={{ width: 1000, height: 100, objectFit: 'cover', borderRadius: 8, maxWidth: '100%' }}
-          />
-        </div>
+        <div className="w-full h-[100px] bg-no-repeat bg-cover bg-center" style={{backgroundImage: `url('${settings.banner_url}')`, minHeight: 100, margin: 0, padding: 0}} />
       )}
-      {/* Barra de insights no topo */}
-      <div className="text-white py-2 text-xs sticky top-0 z-50" style={{ backgroundColor: settings?.primary_color || '#3b82f6' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-3 items-center text-xs sm:text-sm">
-            <div className="flex items-center space-x-1 text-xs sm:text-sm">
-              <Truck className="h-4 w-4 transform scale-x-[-1]" />
-              <span className="font-medium text-xs sm:text-sm">FRETE GRÁTIS</span>
-            </div>
-            <div className="flex items-center justify-center space-x-1 text-xs sm:text-sm">
-              <Shield className="h-3 w-3" />
-              <span className="font-medium text-xs sm:text-sm hidden sm:inline">Compra 100% Segura Aprovada!</span>
-              <span className="font-medium text-xs sm:text-sm sm:hidden">100% Segura</span>
-            </div>
-            <div className="flex items-center justify-end space-x-1 text-xs sm:text-sm">
-              <Phone className="h-3 w-3" />
-              <span className="font-medium text-xs sm:text-sm hidden sm:inline">Fale conosco: (73) 98254-9895</span>
-              <span className="font-medium text-xs sm:text-sm sm:hidden">(73) 98254-9895</span>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <header className="shadow-md sticky top-8 z-40" style={{ backgroundColor: settings?.background_color || '#ffffff' }}>
       {/* Top bar com informações de contato */}
