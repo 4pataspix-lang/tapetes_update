@@ -20,74 +20,76 @@ export const AdminSettings: React.FC = () => {
     const { name, value, type } = e.target;
     const finalValue = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
     
-    const renderBasicTab = () => (
-      <div className="space-y-6">
-        <h3 className="text-lg font-semibold text-gray-900">Informações Básicas</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Banner URL no topo */}
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-2">URL da Imagem do Banner (Topo do site)</label>
-            <input
-              type="url"
-              name="banner_url"
-              value={formData.banner_url || ''}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Nome da Loja</label>
-            <input
-              type="text"
-              name="store_name"
-              value={formData.store_name || ''}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Slogan</label>
-            <input
-              type="text"
-              name="store_slogan"
-              value={formData.store_slogan || ''}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          </div>
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Descrição</label>
-            <textarea
-              name="store_description"
-              value={formData.store_description || ''}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              rows={3}
-            />
-          </div>
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Mensagem de Boas-vindas</label>
-            <input
-              type="text"
-              name="welcome_message"
-              value={formData.welcome_message || ''}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">URL do Logo</label>
-            <input
-              type="url"
-              name="logo_url"
-              value={formData.logo_url || ''}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+    function renderBasicTab() {
+      return (
+        <div className="space-y-6">
+          <h3 className="text-lg font-semibold text-gray-900">Informações Básicas</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Banner URL no topo */}
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">URL da Imagem do Banner (Topo do site)</label>
+              <input
+                type="url"
+                name="banner_url"
+                value={formData.banner_url || ''}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Nome da Loja</label>
+              <input
+                type="text"
+                name="store_name"
+                value={formData.store_name || ''}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Slogan</label>
+              <input
+                type="text"
+                name="store_slogan"
+                value={formData.store_slogan || ''}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">Descrição</label>
+              <textarea
+                name="store_description"
+                value={formData.store_description || ''}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                rows={3}
+              />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">Mensagem de Boas-vindas</label>
+              <input
+                type="text"
+                name="welcome_message"
+                value={formData.welcome_message || ''}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">URL do Logo</label>
+              <input
+                type="url"
+                name="logo_url"
+                value={formData.logo_url || ''}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   const renderDesignTab = () => (
     <div className="space-y-6">
       <h3 className="text-lg font-semibold text-gray-900">Cores Principais</h3>
