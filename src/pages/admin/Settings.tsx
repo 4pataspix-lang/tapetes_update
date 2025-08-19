@@ -88,61 +88,6 @@ export const AdminSettings: React.FC = () => {
         </div>
       </div>
     );
-            value={formData.store_slogan || ''}
-            onChange={handleInputChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">Descrição da Loja</label>
-        <textarea
-          name="store_description"
-          value={formData.store_description || ''}
-          onChange={handleInputChange}
-          rows={3}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">Mensagem de Boas-vindas</label>
-        <textarea
-          name="welcome_message"
-          value={formData.welcome_message || ''}
-          onChange={handleInputChange}
-          rows={2}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        />
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">URL do Logo</label>
-          <input
-            type="url"
-            name="logo_url"
-            value={formData.logo_url || ''}
-            onChange={handleInputChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </div>
-        
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">URL do Banner</label>
-          <input
-            type="url"
-            name="banner_url"
-            value={formData.banner_url || ''}
-            onChange={handleInputChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </div>
-      </div>
-    </div>
-  );
-
   const renderDesignTab = () => (
     <div className="space-y-6">
       <h3 className="text-lg font-semibold text-gray-900">Cores Principais</h3>
@@ -910,4 +855,4 @@ export const AdminSettings: React.FC = () => {
       </div>
     </div>
   );
-};
+}
